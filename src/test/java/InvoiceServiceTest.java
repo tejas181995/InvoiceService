@@ -1,4 +1,5 @@
 import com.bridgelabz.invoiceservice.InvoiceService;
+import com.bridgelabz.invoiceservice.InvoiceSummary;
 import com.bridgelabz.invoiceservice.Ride;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,6 +27,8 @@ public class InvoiceServiceTest {
             Ride[] rides = {new Ride(2.0, 5),
                     new Ride(0.1, 1)
             };
-            Assertions.assertEquals(30.0, invoiceGenerator.calculateFare(rides));
+            InvoiceSummary summary = invoiceGenerator.calculateFare(rides);
+            InvoiceSummary expectedInvoiceSummary=  new InvoiceSummary(2,30.0);
+            Assertions.assertEquals(expectedInvoiceSummary, summary);
     }
 }

@@ -8,12 +8,12 @@ public class InvoiceService {
     public double calculateFare(double distance, int time) {
         return Math.max((distance * MINIMUM_COST_PER_KM + time * COST_PER_TIME), MINIMUM_FARE);
     }
-    public double calculateFare(Ride[] rides){
+    public InvoiceSummary calculateFare(Ride[] rides){
         double totalFare = 0;
         for(Ride ride : rides){
            totalFare += this.calculateFare(ride.distance, ride.time);
         }
-        return totalFare;
+        return new InvoiceSummary(rides.length, totalFare) ;
     }
 
 }
