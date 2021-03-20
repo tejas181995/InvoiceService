@@ -1,21 +1,22 @@
 import com.bridgelabz.invoiceservice.InvoiceService;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class InvoiceServiceTest {
+    InvoiceService invoiceGenerator;
+    @BeforeEach
+    public void setUp() {
+        invoiceGenerator = new InvoiceService();
+    }
+
     @Test
     public void givenDistanceAndTime_ShouldReturnTotalFare() {
-        InvoiceService invoiceGenerator = new InvoiceService();
-        double distance = 2.0;
-        int time = 5;
-        Assertions.assertEquals(25.0, invoiceGenerator.calculateFare(distance, time));
+        Assertions.assertEquals(25.0, invoiceGenerator.calculateFare(2.0, 5));
     }
 
     @Test
     public void givenLessDistaneOrTime_ShouldReturnMinFare() {
-        InvoiceService invoiceGenerator = new InvoiceService();
-        double distance = 0.1;
-        int time = 1;
-        Assertions.assertEquals(5,invoiceGenerator.calculateFare(distance, time));
+        Assertions.assertEquals(5, invoiceGenerator.calculateFare(0.1, 1));
     }
 }
